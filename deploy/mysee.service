@@ -1,0 +1,15 @@
+[Unit]
+Description=mysee - griglia di videosorveglianza
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/bin/python3 /opt/mysee/server.py --port 8080
+Environment=PYTHONUNBUFFERED=1
+DynamicUser=yes
+SupplementaryGroups=video
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
